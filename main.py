@@ -9,6 +9,18 @@ from agents.supervisor_agent import supervisor_agent
 from agents.technical_agent import technical_agent
 from langgraph.checkpoint.memory import InMemorySaver
 
+from traceloop.sdk import Traceloop
+
+Traceloop.init()
+Traceloop.init(disable_batch=True)
+
+headers = { "Authorization": os.environ.get("OTEL_EXPORTER_OTLP_HEADERS") }
+Traceloop.init(
+    app_name="FinancialAIAdvisor",
+    api_endpoint=os.environ.get("OTEL_EXPORTER_OTLP_ENDPOINT"),
+    headers=headers,
+    disable_batch=True
+)
 load_dotenv()
 
 # app = Flask(__name__)
@@ -25,10 +37,12 @@ fundamental_agent = fundamental_agent()
 technical_agent = technical_agent()
 supervisor:supervisor_agent = supervisor_agent(news_agent,fundamental_agent, technical_agent)
 
+
 # Initialize checkpointer
 checkpointer = InMemorySaver()
 supervisor_app = supervisor.compile(checkpointer=checkpointer)
 config = {"configurable": {"thread_id": "1"}}
+
 
 # @app.route('/query', methods=['POST'])
 # def query():
