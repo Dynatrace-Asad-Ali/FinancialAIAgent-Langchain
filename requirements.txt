@@ -8,4 +8,5 @@ langgraph-supervisor
 langchain-tavily
 langchain[openai]
 langchain_community
-Flask
+gradio
+yfinance
