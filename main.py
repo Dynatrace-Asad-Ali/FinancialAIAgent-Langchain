@@ -17,10 +17,10 @@ from traceloop.sdk import Traceloop
 Traceloop.init()
 Traceloop.init(disable_batch=True)
 
-headers = { "Authorization": os.environ.get("OTEL_EXPORTER_OTLP_HEADERS") }
+headers = { "Authorization": os.environ.get("DYNATRACE_EXPORTER_OTLP_HEADERS") }
 Traceloop.init(
     app_name="FinancialAIAdvisor",
-    api_endpoint=os.environ.get("OTEL_EXPORTER_OTLP_ENDPOINT"),
+    api_endpoint=os.environ.get("DYNATRACE_EXPORTER_OTLP_ENDPOINT"),
     headers=headers,
     disable_batch=True
 )
@@ -36,7 +36,6 @@ def _set_if_undefined(var: str):
 
 
 _set_if_undefined("OPENAI_API_KEY")
-_set_if_undefined("TAVILY_API_KEY")
 
 news_agent = news_agent()
 fundamental_agent = fundamental_agent()
@@ -74,6 +73,7 @@ def process_message(user_input: str, chat_history):
       },
     ):
       chat_history.append({"role": "assistant", "content": get_pretty_messages(chunk, last_message=True)})
+      pretty_print_messages(chunk, last_message=False)
       yield chat_history
   except Exception as e:
     print(str(e))
