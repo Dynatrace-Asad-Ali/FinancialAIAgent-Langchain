@@ -10,7 +10,7 @@ def fundamental_agent() -> create_react_agent:
       model="openai:gpt-4.1",
       tools=[my_fundamental_tool],
       prompt=(
-          "ou are a fundamental analysis agent that helps users analyze the financial health of companies.\n\n"
+          "You are a fundamental analysis agent that helps users analyze the financial health of companies.\n\n"
           "INSTRUCTIONS:\n"
           # "- Assist ONLY with research-related tasks, DO NOT do any math\n"
           # "- After you're done with your tasks, respond to the supervisor directly\n"
