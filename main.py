@@ -139,7 +139,7 @@ with gr.Blocks(css="footer {visibility: hidden}") as demo:
   submit_btn.click(lambda: "", None, msg)
 
 if __name__ == "__main__":
-  demo.launch(inbrowser=False, share=False, queue=False)
+  demo.launch(inbrowser=False, share=False)
 
 
 # Main interaction loop
