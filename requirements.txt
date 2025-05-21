@@ -12,3 +12,4 @@ gradio==5.29.0
 yfinance==0.2.61
 duckduckgo-search==8.0.2
 faiss-cpu==1.11.0
+streamlit==1.37.1

@@ -1,11 +1,8 @@
 import getpass
 import os
-import gradio as gr
-from gradio import ChatMessage
 
 from utils.pretty_print import pretty_print_messages
 from utils.get_pretty import get_pretty_messages
-# from flask import Flask, request, jsonify
 from dotenv import load_dotenv
 from agents.news_agent import news_agent
 from agents.fundamental_agent import fundamental_agent
@@ -13,6 +10,7 @@ from agents.supervisor_agent import supervisor_agent
 from agents.technical_agent import technical_agent
 from agents.humorous_news_agent import humorous_news_agent
 from traceloop.sdk import Traceloop
+import streamlit as st
 
 Traceloop.init()
 Traceloop.init(disable_batch=True)
@@ -43,104 +41,38 @@ technical_agent = technical_agent()
 humorous_news_agent = humorous_news_agent()
 supervisor: supervisor_agent = supervisor_agent(news_agent, fundamental_agent, technical_agent, humorous_news_agent).compile()
 
+st.title("💬 Stock Analysis Demo")
+# st.caption("🚀 A Streamlit chatbot powered by OpenAI")
+if "messages" not in st.session_state:
+    st.session_state["messages"] = [{"role": "assistant", "content": "What stock related analysis can I do for you?"}]
 
-# Initialize checkpointer
-# checkpointer = InMemorySaver()
-# supervisor_app = supervisor.compile(checkpointer=checkpointer)
-# config = {"configurable": {"thread_id": "1"}}
+for msg in st.session_state.messages:
+    st.chat_message(msg["role"]).write(msg["content"])
 
-def process_message(user_input: str, chat_history):
-  """Process user message and update chat history"""
+if prompt := st.chat_input():
+
   try:
-    # First, add user message to history for display
-    chat_history.append({"role": "user", "content": user_input})
-    yield chat_history
-    # result = supervisor_app.invoke({
-    #   "messages": [{
-    #     "role": "user",
-    #     "content": user_input
-    #   }]
-    # }, config=config)
+    st.session_state.messages.append({"role": "user", "content": prompt})
+    st.chat_message("user").write(prompt)
 
     for chunk in supervisor.stream(
       {
         "messages": [
           {
             "role": "user",
-            "content": user_input
+            "content": prompt
           }
         ]
       },
     ):
-      chat_history.append({"role": "assistant", "content": get_pretty_messages(chunk, last_message=True)})
+      pretty_chunk = get_pretty_messages(chunk, last_message=True)
+      st.session_state.messages.append({"role": "assistant", "content":pretty_chunk})
+      st.chat_message("assistant").write(pretty_chunk)
       pretty_print_messages(chunk, last_message=False)
-      yield chat_history
   except Exception as e:
     print(str(e))
     error_msg = f"An error occurred: {str(e)}"
-    chat_history.append({"role": "assistant", "content": error_msg})
-    yield chat_history
-
-css = """
-p {
-    text-align: center;
-}
-"""
-
-# Create Gradio Interface
-with gr.Blocks(css="footer {visibility: hidden}") as demo:
-  gr.Markdown("""
-    # <p align='center'>✨ Stock Analysis Demo</p>
-
-
-    """)
-
-  chatbot = gr.Chatbot(
-    height=500,
-    show_label=False,
-    avatar_images=(None, "https://api.dicebear.com/7.x/bottts/svg?seed=gemma"),
-    type="messages"
-  )
-
-  with gr.Row():
-    msg = gr.Textbox(
-      scale=5,
-      show_label=False,
-      placeholder="Ask me news/fundamentals/technical analysis of any stock...",
-      container=False
-    )
-    submit_btn = gr.Button("Send", scale=1)
-
-  with gr.Row():
-    clear_btn = gr.Button("Clear Chat")
-
-  # Set up event handlers
-  msg.submit(
-    process_message,
-    [msg, chatbot],
-    [chatbot],
-  )
-
-  submit_btn.click(
-    process_message,
-    [msg, chatbot],
-    [chatbot],
-  )
-
-  clear_btn.click(
-    lambda: [],
-    None,
-    chatbot,
-    queue=False
-  )
-
-  # Clear textbox after sending message
-  msg.submit(lambda: "", None, msg)
-  submit_btn.click(lambda: "", None, msg)
-
-if __name__ == "__main__":
-  demo.launch(inbrowser=False, share=False)
-
+    st.session_state.messages.append({"role": "assistant", "content": error_msg})
 
 # Main interaction loop
 # while True:
