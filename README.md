@@ -11,18 +11,25 @@ The following API keys are required for this app
 * Python 3.8 or higher
 
 ### Usage
-The app uses gradio to create a web page so that users can interact with the app using browser. Once the app is launched, it spits out the url to access the app. Open a browser window and put the url to access the UI of this app.
+The app uses streamlit to create a web page so that users can interact with the app using browser. Once the app is launched, it spits out the url to access the app. Open a browser window and put the url to access the UI of this app.
 
 ### Instrumentation
 The app uses traceloop to send telemetry data. If you want to capture those telemetry data please add the endpoints in .env file.
 
 ### How to run
+#### On Desktop
+Update .env file with all the required keys
 ```commandline
 python -m venv financialagent
 financialagent/bin/activate
 pip install -r requirements.txt
 
-python main.py
+streamlit run main.py
+```
+
+#### Codespaces
+```commandline
+./run.sh
 ```
 ### Suggested Chat Commands
 * Analyze APPL stock
