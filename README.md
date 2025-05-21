@@ -16,8 +16,13 @@ The app uses streamlit to create a web page so that users can interact with the 
 ### Instrumentation
 The app uses traceloop to send telemetry data. If you want to capture those telemetry data please add the endpoints in .env file.
 
+To get tracing data in Dynatrace, provide these keys:
+* DYNATRACE_EXPORTER_OTLP_ENDPOINT (e.g <tenant>.live.dynatrace.com/api/v2/otlp)
+* DYNATRACE_API_TOKEN
+
 ### How to run
 #### On Desktop
+Copy .env.template to .env 
 Update .env file with all the required keys
 ```commandline
 python -m venv financialagent

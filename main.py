@@ -15,7 +15,7 @@ import streamlit as st
 Traceloop.init()
 Traceloop.init(disable_batch=True)
 
-headers = { "Authorization": os.environ.get("DYNATRACE_EXPORTER_OTLP_HEADERS") }
+headers = { "Authorization": "Api-Token " + os.environ.get("DYNATRACE_API_TOKEN") }
 Traceloop.init(
     app_name="FinancialAIAdvisor",
     api_endpoint=os.environ.get("DYNATRACE_EXPORTER_OTLP_ENDPOINT"),
@@ -44,7 +44,7 @@ supervisor: supervisor_agent = supervisor_agent(news_agent, fundamental_agent, t
 st.title("💬 Stock Analysis Demo")
 # st.caption("🚀 A Streamlit chatbot powered by OpenAI")
 if "messages" not in st.session_state:
-    st.session_state["messages"] = [{"role": "assistant", "content": "What stock related analysis can I do for you?"}]
+    st.session_state["messages"] = [{"role": "assistant", "content": "Ask me news/fundamental/technical analysis of any stock"}]
 
 for msg in st.session_state.messages:
     st.chat_message(msg["role"]).write(msg["content"])
