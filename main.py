@@ -36,7 +36,7 @@ humorous_news_agent = humorous_news_agent()
 supervisor: supervisor_agent = supervisor_agent(news_agent, fundamental_agent, technical_agent, humorous_news_agent).compile()
 
 st.title("💬 Stock Analysis Demo")
-# st.caption("🚀 A Streamlit chatbot powered by OpenAI")
+
 if "messages" not in st.session_state:
     st.session_state["messages"] = [{"role": "assistant", "content": "Ask me news/fundamental/technical analysis of any stock"}]
 
