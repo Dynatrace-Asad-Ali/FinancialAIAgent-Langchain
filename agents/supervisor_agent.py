@@ -2,9 +2,6 @@ from langgraph_supervisor import create_supervisor
 from langchain.chat_models import init_chat_model
 from langgraph.prebuilt import create_react_agent
 
-# from agents.humorous_news_agent import humorous_news_agent
-
-
 def supervisor_agent(news_agent: create_react_agent, fundamental_agent:create_react_agent, technical_agent:create_react_agent, humorous_news_agent:create_react_agent) -> create_supervisor:
   supervisor = create_supervisor(
       model=init_chat_model("gpt-4o-mini"),
