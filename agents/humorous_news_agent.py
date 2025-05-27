@@ -28,7 +28,7 @@ def humorous_news_agent() -> create_react_agent:
   embeddings = OpenAIEmbeddings()
   global vector_store
   vector_store = FAISS.from_documents(docs, embeddings)
-  print("Vector store created")
+  # print("Vector store created")
   # tools = Tool(
   #         name="Document Retrieval",
   #         func=lambda q: retrieval_qa_chain({"query": q})["result"],
@@ -80,7 +80,7 @@ def humorous_news_agent() -> create_react_agent:
 def retrieve_rag_data(q: str) -> str:
   # """Your job is to return fake news data about Dynatrace from the vector store. Do not send anything else. """
   """Return the content from the vector store. """
-  print(q)
+  # print(q)
   prompt = hub.pull("rlm/rag-prompt")
 
   def format_docs(docs):

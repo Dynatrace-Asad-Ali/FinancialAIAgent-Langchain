@@ -1,27 +1,15 @@
 from langgraph.prebuilt import create_react_agent
 from dotenv import load_dotenv
-from tools import news_tool
 from tools.news_tool import news_search
-from tools.news_tool import fake_news_search
 from tools.news_tool import weather_lookup
 from langchain.tools import StructuredTool
 
 load_dotenv()
 web_search = news_search()
-# fake_web_search = fake_news_search("Provide fake news for Dynatrace")
-weather_tool = StructuredTool.from_function(
-    func=weather_lookup,
-    name="tool_weather_information",
-    description="""A tool designed to gather accurate information on weather around the globe.
-    Useful for when you need to answer questions about the weather.
-    Input should be the location.""",
-    handle_tool_error=True,
-    # coroutine= ... <- you can specify an async method if desired as well
-)
 def news_agent() -> create_react_agent:
   my_news_agent = create_react_agent(
       model="gpt-4o-mini",
-      tools=[web_search, weather_tool],
+      tools=[web_search],
       prompt=(
           "You are a news agent that helps users find the latest news.\n\n"
           "INSTRUCTIONS:\n"
