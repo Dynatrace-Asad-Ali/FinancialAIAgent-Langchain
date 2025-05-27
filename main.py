@@ -12,9 +12,6 @@ from agents.humorous_news_agent import humorous_news_agent
 from traceloop.sdk import Traceloop
 import streamlit as st
 
-Traceloop.init()
-Traceloop.init(disable_batch=True)
-
 headers = { "Authorization": "Api-Token " + os.environ.get("DYNATRACE_API_TOKEN") }
 Traceloop.init(
     app_name="FinancialAIAdvisor",
@@ -22,12 +19,9 @@ Traceloop.init(
     headers=headers,
     disable_batch=True
 )
-from langgraph.checkpoint.memory import InMemorySaver
 
 load_dotenv()
 
-
-# app = Flask(__name__)
 def _set_if_undefined(var: str):
   if not os.environ.get(var):
     os.environ[var] = getpass.getpass(f"Please provide your {var}")
