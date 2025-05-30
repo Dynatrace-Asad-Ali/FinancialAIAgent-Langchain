@@ -1,0 +1,7 @@
+mcp
+langchain
+langgraph
+langchain-openai
+langchain-mcp-adapters
+dotenv
+streamlit==1.37.1

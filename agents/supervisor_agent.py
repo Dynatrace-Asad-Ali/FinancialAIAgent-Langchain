@@ -7,7 +7,7 @@ def supervisor_agent(news_agent: create_react_agent, fundamental_agent:create_re
       model=init_chat_model("gpt-4o-mini"),
       agents=[news_agent, fundamental_agent,technical_agent,humorous_news_agent],
       prompt=(
-          "You are a supervisor managing three agents:\n"
+          "You are a supervisor managing four agents:\n"
           "- a news agent. Assign news-related tasks to this agent\n"
           "- a fundamental agent. Assign fundamental analysis tasks to this agent\n"
           "- a technical agent. Assign technical analysis tasks to this agent\n"
