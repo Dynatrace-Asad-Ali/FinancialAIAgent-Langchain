@@ -15,9 +15,6 @@
     "OPENAI_API_KEY": {
 		     "description": "OpenAI API Token. Go to https://platform.openai.com/api-keys"
     },
-    "LANGSMITH_API_KEY": {
-		     "description": "Api token for Langsmith"
-	 	  },
     "DYNATRACE_EXPORTER_OTLP_ENDPOINT": {
 		     "description": "Dynatrace OTLP Endpoint. e.g. https://scu37051.live.dynatrace.com/api/v2/otlp"
     },

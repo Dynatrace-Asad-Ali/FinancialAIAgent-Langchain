@@ -1,7 +1,9 @@
 # MCP Servers & Client
-This sample application setups 2 mcp servers that run locally and one streamlit based mcp client. It uses langgraph framework for the client app and creates one node create react agent.
+This sample application setups 2 mcp servers that run locally and one streamlit based mcp client. It uses langgraph framework for the client app and creates one node create react agent. The react native agent connects to 3 MCP servers:
+* Math MCP Server
+* Weather MCP Server
+* Dynatrace MCP Server (Running on a separate server)
 
-The streamlit based client app also connects to a third mcp run running remotely. The remote server is a Dynatrace MCP Server.
 
 ### API Keys
 The following API keys are required for this app
@@ -44,3 +46,4 @@ pyt
 * What is the weather in Orlando
 * List Dynatrace capabilities provided by the Dynatrace tool
 * List all the vulnerabilities in my Dynatrace tenant
+* List top 5  problems in the Dynatrace tenant

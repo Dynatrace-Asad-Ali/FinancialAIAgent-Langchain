@@ -6,6 +6,7 @@ The multiple agents used in this app uses OpenAI LLM Model and uses TavilySearch
 ### API Keys
 The following API keys are required for this app
 * OPENAI_API_KEY
+* LANGSMITH_API_KEY
 
 ### Requirements
 * Python 3.8 or higher
