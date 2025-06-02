@@ -103,7 +103,7 @@ async def main():
             error_msg = f"An error occurred: {str(e)}"
             st.session_state.messages.append({"role": "assistant", "content": error_msg})
   except Exception as e:
-    print("connection error: {e}")
+    print(f"connection error: {e}")
     # while True:
     #     message = input("User: ")
     #     response = await agent.ainvoke({"messages": message}, config=config)

@@ -4,3 +4,4 @@ sed -i "s,OPENAI_API_KEY_TOREPLACE,$OPENAI_API_KEY," /workspaces/$RepositoryName
 
 source /workspaces/$RepositoryName/setEnv.sh
 chmod +x /workspaces/$RepositoryName/run.sh
+chmod +x /workspaces/$RepositoryName/mcp/run-mcp.sh
