@@ -1,8 +1,8 @@
 dotenv==0.9.9
 langchain==0.3.25
 langchain-openai===0.3.16
-langchain-core==0.3.60
-python-dotenv==0.21.0
+langchain-core~=0.3.59
+python-dotenv~=1.1.0
 traceloop-sdk==0.40.3
 langgraph==0.4.3
 langgraph-supervisor==0.0.21
@@ -12,4 +12,7 @@ gradio==5.29.0
 yfinance==0.2.61
 duckduckgo-search==8.0.2
 faiss-cpu==1.11.0
-streamlit==1.37.1
+streamlit~=1.45.1
+typing_extensions~=4.13.2
+langchain-text-splitters~=0.3.8
+langchain-community~=0.3.24
