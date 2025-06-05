@@ -41,7 +41,7 @@ if "messages" not in st.session_state:
     st.session_state["messages"] = [{"role": "assistant", "content": "Ask me news/fundamental/technical analysis of any stock"}]
 
 for msg in st.session_state.messages:
-    st.chat_message(msg["role"]).write(msg["content"])
+  st.chat_message(msg["role"]).write(msg["content"])
 
 if prompt := st.chat_input():
 
@@ -58,6 +58,7 @@ if prompt := st.chat_input():
           }
         ]
       },
+      stream_mode = "updates"
     ):
       pretty_chunk = get_pretty_messages(chunk, last_message=True)
       st.session_state.messages.append({"role": "assistant", "content":pretty_chunk})
