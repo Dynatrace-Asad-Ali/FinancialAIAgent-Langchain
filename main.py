@@ -13,7 +13,7 @@ from traceloop.sdk import Traceloop
 import streamlit as st
 from langchain_core.messages import HumanMessage
 from langchain_core.messages.ai import AIMessageChunk
-from utils import astream_graph, random_uuid
+from utils.utils import astream_graph, random_uuid
 from langchain_core.runnables import RunnableConfig
 from langchain_core.messages.tool import ToolMessage
 import asyncio
@@ -42,9 +42,7 @@ if "session_initialized" not in st.session_state:
     st.session_state.timeout_seconds = (
         120  # Response generation time limit (seconds), default 120 seconds
     )
-    st.session_state.selected_model = (
-        "gpt-4o-mini"  # Default model selection
-    )
+
     st.session_state.recursion_limit = 100  # Recursion call limit, default 100
 
 if "thread_id" not in st.session_state:
@@ -110,19 +108,6 @@ async def initialize_session():
       bool: Initialization success status
   """
 
-    # Initialize appropriate model based on selection
-    # selected_model = st.session_state.selected_model
-    # model = ChatOpenAI(
-    #   model=selected_model,
-    #   temperature=0,
-    #   max_tokens=OUTPUT_TOKEN_INFO["gpt-4o-mini"]["max_tokens"],
-    # )
-    # agent = create_react_agent(
-    #   model,
-    #   tools,
-    #   checkpointer=MemorySaver(),
-    #   prompt=SYSTEM_PROMPT,
-    # )
   st.session_state.agent = supervisor
   st.session_state.session_initialized = True
   return True
@@ -293,9 +278,6 @@ async def process_query(query, text_placeholder, tool_placeholder, timeout_secon
     return {"error": error_msg}, error_msg, ""
 
 
-st.session_state.selected_model = (
-    "gpt-4o-mini"  # Default model selection
-  )
 success = st.session_state.event_loop.run_until_complete(
   initialize_session()
 )
@@ -335,67 +317,3 @@ if user_query:
     st.warning(
       "⚠️ MCP server and agent are not initialized. Please click the 'Apply Settings' button in the left sidebar to initialize."
     )
-
-# if "messages" not in st.session_state:
-#     st.session_state["messages"] = [{"role": "assistant", "content": "Ask me news/fundamental/technical analysis of any stock"}]
-#
-# for msg in st.session_state.messages:
-#   st.chat_message(msg["role"]).write(msg["content"])
-#
-# if prompt := st.chat_input():
-#
-#   try:
-#     st.session_state.messages.append({"role": "user", "content": prompt})
-#     st.chat_message("user").write(prompt)
-#
-#     for chunk in supervisor.stream(
-#       {
-#         "messages": [
-#           {
-#             "role": "user",
-#             "content": prompt
-#           }
-#         ]
-#       },
-#       stream_mode = "updates"
-#     ):
-#       pretty_chunk = get_pretty_messages(chunk, last_message=True)
-#       st.session_state.messages.append({"role": "assistant", "content":pretty_chunk})
-#       st.chat_message("assistant").write(pretty_chunk)
-#       pretty_print_messages(chunk, last_message=False)
-#   except Exception as e:
-#     print(str(e))
-#     error_msg = f"An error occurred: {str(e)}"
-#     st.session_state.messages.append({"role": "assistant", "content": error_msg})
-
-# Main interaction loop
-# while True:
-#     user_input = input("\nEnter your query (or 'exit' to quit): ")
-#
-#     if user_input.lower() == 'exit':
-#         print("Goodbye!")
-#         break
-#
-#     for chunk in supervisor.stream(
-#         {
-#             "messages": [
-#                 {
-#                     "role": "user",
-#                     "content": user_input
-#                 }
-#             ]
-#         },
-#     ):
-#         pretty_print_messages(chunk, last_message=True)
-# result = supervisor_app.invoke({
-#     "messages": [{
-#         "role": "user",
-#         "content": user_input
-#     }]
-# }, config=config)
-#
-# for m in result["messages"]:
-#     print("****************************\n")
-#     print(type(m.content))
-#     print("****************************\n")
-#     print(m.content)
