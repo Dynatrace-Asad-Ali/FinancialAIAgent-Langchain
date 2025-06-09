@@ -5,3 +5,4 @@ langchain-openai==0.3.16
 langchain-mcp-adapters==0.1.1
 dotenv==0.9.9
 streamlit==1.37.1
+traceloop-sdk==0.40.3

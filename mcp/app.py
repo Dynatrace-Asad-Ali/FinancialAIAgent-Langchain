@@ -23,9 +23,17 @@ from langgraph.prebuilt import create_react_agent
 from langchain_openai import ChatOpenAI
 import json
 import os
+from traceloop.sdk import Traceloop
 
 load_dotenv()
 
+headers = { "Authorization": "Api-Token " + os.environ.get("DYNATRACE_API_TOKEN") }
+Traceloop.init(
+    app_name="MCPAgent",
+    api_endpoint=os.environ.get("DYNATRACE_EXPORTER_OTLP_ENDPOINT"),
+    headers=headers,
+    disable_batch=True
+)
 # Create and reuse global event loop (create once and continue using)
 if "event_loop" not in st.session_state:
     loop = asyncio.new_event_loop()
@@ -70,7 +78,6 @@ SYSTEM_PROMPT = """<ROLE>
 You are a smart agent with an ability to use tools.
 You will be given a question and you will use the tools to answer the question.
 Pick the most relevant tool to answer the question.
-If you are failed to answer the question, try different tools to get context.
 Your answer should be very polite and professional.
 Only use tools provided. Do not use your own tools
 </ROLE>
