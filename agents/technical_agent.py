@@ -1,16 +1,13 @@
 from langgraph.prebuilt import create_react_agent
 from dotenv import load_dotenv
-# from langchain_community.tools.yahoo_finance_news import YahooFinanceNewsTool
 from tools.technical_tool import technical_tool
 load_dotenv()
-# my_technical_tool = technical_tool()
-
-from langchain_community.tools.yahoo_finance_news import YahooFinanceNewsTool
+my_technical_tool = technical_tool()
 
 def technical_agent() -> create_react_agent:
   my_technical_agent = create_react_agent(
       model="gpt-4o-mini",
-      tools=[YahooFinanceNewsTool()],
+      tools=[my_technical_tool],
       prompt=(
           "You are a technical analysis agent that helps users analyze stock prices and trends for a given stock {stock}.\n\n"
           "INSTRUCTIONS:\n"
