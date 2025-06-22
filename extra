@@ -1,0 +1,8 @@
+# Add at line number 21
+headers = { "Authorization": "Api-Token " + os.environ.get("DYNATRACE_API_TOKEN") }
+Traceloop.init(
+    app_name="FinancialAIAdvisor",
+    api_endpoint=os.environ.get("DYNATRACE_EXPORTER_OTLP_ENDPOINT"),
+    headers=headers,
+    disable_batch=True
+)
