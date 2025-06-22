@@ -18,14 +18,6 @@ from langchain_core.runnables import RunnableConfig
 from langchain_core.messages.tool import ToolMessage
 import asyncio
 
-headers = { "Authorization": "Api-Token " + os.environ.get("DYNATRACE_API_TOKEN") }
-Traceloop.init(
-    app_name="FinancialAIAdvisor",
-    api_endpoint=os.environ.get("DYNATRACE_EXPORTER_OTLP_ENDPOINT"),
-    headers=headers,
-    disable_batch=True
-)
-
 load_dotenv()
 
 # Create and reuse global event loop (create once and continue using)
