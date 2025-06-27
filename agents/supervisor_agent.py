@@ -13,6 +13,7 @@ def supervisor_agent(news_agent: create_react_agent, fundamental_agent:create_re
           "- a technical agent. Assign technical analysis tasks to this agent\n"
           "- a humorous  news agent. Assign any request for humorous news to this agent\n"
           "- For stock analysis use news agent, fundamental agent and technical agent\n"
+          "- Do not answer questions about anything else.\n"
           # "Assign work to one agent at a time, do not call agents in parallel.\n"
           "Do not do any work yourself."
           "After you get the results, send the results to the users"
