@@ -1,0 +1,41 @@
+# Core dependencies
+streamlit>=1.45.1
+python-dotenv>=1.1.0
+
+# LangChain ecosystem
+langchain>=0.3.25
+langchain-openai>=0.3.16
+langchain-core>=0.3.59
+langchain-community>=0.3.24
+langchain-tavily>=0.1.6
+langchain-text-splitters>=0.3.8
+langgraph>=0.4.3
+langgraph-supervisor>=0.0.21
+
+# Financial data
+yfinance>=0.2.61
+
+# Search and web scraping
+duckduckgo-search>=8.0.2
+tavily-python>=0.3.0
+
+# Vector storage and embeddings
+faiss-cpu>=1.11.0
+
+# Observability
+traceloop-sdk>=0.40.3
+
+# Development and testing
+pytest>=7.0.0
+pytest-asyncio>=0.21.0
+black>=23.0.0
+flake8>=6.0.0
+mypy>=1.0.0
+
+# Type hints
+typing-extensions>=4.13.2
+
+# Utilities
+requests>=2.31.0
+pandas>=2.0.0
+numpy>=1.24.0
