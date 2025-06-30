@@ -1,0 +1,14 @@
+{
+  "math": {
+    "url": "http://localhost:8000/mcp",
+    "transport": "streamable_http"
+  },
+  "weather": {
+    "url": "http://localhost:8080/mcp",
+    "transport": "streamable_http"
+  },
+  "dynatrace": {
+    "url": "http://52.186.168.229:3000/mcp",
+    "transport": "streamable_http"
+  }
+}
