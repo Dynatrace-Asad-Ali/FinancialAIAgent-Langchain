@@ -1,0 +1,27 @@
+# Core MCP and LangChain dependencies
+mcp==1.9.0
+langchain==0.3.25
+langgraph==0.4.3
+langchain-openai==0.3.16
+langchain-mcp-adapters==0.1.1
+
+# Environment and configuration
+python-dotenv==1.1.0
+
+# Web framework
+streamlit==1.37.1
+
+# Observability (optional)
+traceloop-sdk==0.40.3
+
+# Development dependencies
+pytest>=7.0.0
+pytest-asyncio>=0.21.0
+black>=23.0.0
+flake8>=6.0.0
+
+# Type hints
+typing-extensions>=4.13.2
+
+# Utilities
+requests>=2.31.0
