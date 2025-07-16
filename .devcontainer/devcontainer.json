@@ -15,6 +15,9 @@
     "OPENAI_API_KEY": {
 		     "description": "OpenAI API Token. Go to https://platform.openai.com/api-keys"
     },
+    "TAVILY_API_KEY": {
+		     "description": "Tavily search engine API Key"
+    },
     "DYNATRACE_EXPORTER_OTLP_ENDPOINT": {
 		     "description": "Dynatrace OTLP Endpoint. e.g. https://scu37051.live.dynatrace.com/api/v2/otlp"
     },
