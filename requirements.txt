@@ -9,7 +9,6 @@ langgraph-supervisor==0.0.21
 langchain-tavily==0.1.6
 langchain_community==0.3.24
 yfinance==0.2.61
-duckduckgo-search==8.0.2
 faiss-cpu==1.11.0
 streamlit~=1.45.1
 typing_extensions~=4.13.2
