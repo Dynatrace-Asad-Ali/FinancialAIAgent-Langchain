@@ -15,7 +15,7 @@ load_dotenv()
 
 
 def news_search() -> TavilySearch:
-  my_news_search = TavilySearch(max_results=5)
+  my_news_search = TavilySearch(max_results=5,topic="news")
   return my_news_search
 
 
