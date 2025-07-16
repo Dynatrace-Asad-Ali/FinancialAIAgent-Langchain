@@ -26,7 +26,7 @@ Copy .env.template to .env
 Update .env file with all the required keys
 ```commandline
 python -m venv financialagent
-financialagent/bin/activate
+source financialagent/bin/activate
 pip install -r requirements.txt
 
 streamlit run main.py
