@@ -14,7 +14,7 @@ from langchain_tavily import TavilySearch
 load_dotenv()
 
 
-def news_search() -> DuckDuckGoSearchRun:
+def news_search() -> TavilySearch:
   my_news_search = TavilySearch(max_results=5)
   return my_news_search
 
