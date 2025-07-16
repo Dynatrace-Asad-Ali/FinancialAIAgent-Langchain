@@ -9,13 +9,13 @@ from langchain_core.vectorstores import InMemoryVectorStore
 from langchain import hub
 from langchain_core.tools import tool
 import requests
-from langchain_community.tools import DuckDuckGoSearchRun
+from langchain_tavily import TavilySearch
 
 load_dotenv()
 
 
 def news_search() -> DuckDuckGoSearchRun:
-  my_news_search = DuckDuckGoSearchRun()
+  my_news_search = TavilySearch(max_results=5)
   return my_news_search
 
 
