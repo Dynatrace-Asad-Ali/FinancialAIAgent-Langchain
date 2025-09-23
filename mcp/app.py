@@ -51,7 +51,7 @@ client = MultiServerMCPClient(
             "transport": "streamable_http",
         },
       "dynatrace": {
-        "url": "http://52.186.168.229:3000/mcp",
+        "url": "http://52.186.168.229:3000",
         "transport": "streamable_http",
       }
     }
@@ -188,7 +188,7 @@ for msg in st.session_state.messages:
         "transport": "streamable_http",
       },
       "dynatrace": {
-        "url": "http://52.186.168.229:3000/mcp",
+        "url": "http://52.186.168.229:3000",
         "transport": "streamable_http",
       }
     }
