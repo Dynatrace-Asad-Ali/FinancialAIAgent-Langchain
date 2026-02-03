@@ -14,3 +14,4 @@ streamlit~=1.45.1
 typing_extensions~=4.13.2
 langchain-text-splitters~=0.3.8
 langchain-community~=0.3.24
+# langfuse

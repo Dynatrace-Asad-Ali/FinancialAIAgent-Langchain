@@ -40,7 +40,7 @@ async def astream_graph(
 
     def format_namespace(namespace):
         return namespace[-1].split(":")[0] if len(namespace) > 0 else "root graph"
-
+    
     prev_node = ""
 
     if stream_mode == "messages":
@@ -67,12 +67,10 @@ async def astream_graph(
                         print("- " * 25)
 
                     if hasattr(chunk_msg, "content"):
-                        # 리스트 형태의 content (Anthropic/Claude 스타일)
                         if isinstance(chunk_msg.content, list):
                             for item in chunk_msg.content:
                                 if isinstance(item, dict) and "text" in item:
                                     print(item["text"], end="", flush=True)
-                        # content
                         elif isinstance(chunk_msg.content, str):
                             print(chunk_msg.content, end="", flush=True)
                     else:

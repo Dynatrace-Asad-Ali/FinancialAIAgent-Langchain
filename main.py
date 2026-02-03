@@ -17,6 +17,7 @@ from utils.utils import astream_graph, random_uuid
 from langchain_core.runnables import RunnableConfig
 from langchain_core.messages.tool import ToolMessage
 import asyncio
+# from langfuse.callback import CallbackHandler
 
 load_dotenv()
 
@@ -233,6 +234,9 @@ async def process_query(query, text_placeholder, tool_placeholder, timeout_secon
       final_tool: Final tool call information
   """
   try:
+    # Initialize Langfuse Callback Handler
+    # langfuse_handler = CallbackHandler()
+
     if st.session_state.agent:
       streaming_callback, accumulated_text_obj, accumulated_tool_obj = (
         get_streaming_callback(text_placeholder, tool_placeholder)
@@ -246,6 +250,7 @@ async def process_query(query, text_placeholder, tool_placeholder, timeout_secon
             config=RunnableConfig(
               recursion_limit=st.session_state.recursion_limit,
               thread_id=st.session_state.thread_id,
+              # callbacks=[langfuse_handler],
             ),
           ),
           timeout=timeout_seconds,
