@@ -2,3 +2,8 @@
 *.pyc
 .idea/
 __pycache__/
+*.pkl
+*.faiss
+*.toml
+*.swp
+*.orig
